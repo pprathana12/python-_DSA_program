@@ -1,0 +1,12 @@
+menu = {"Burger": 150, "Pizza": 350, "Biryani": 250, "Fries": 100}
+cart = []
+
+print("Menu:", menu)
+
+while (item := input("Enter food item (or 'done'): ").title()) != 'Done':
+    if item in menu: cart.append(item); print(f"Added {item}")
+    else: print("Not on menu!")
+
+total = sum(menu[i] for i in cart)
+print(f"\nOrdered: {cart}\nTotal: ₹{total}")
+
