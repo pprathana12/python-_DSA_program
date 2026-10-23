@@ -1,0 +1,51 @@
+import streamlit as st
+import random
+
+st.set_page_config(
+    page_title="AI Study Assistant",
+    page_icon="📚"
+)
+
+st.title("📚 AI Study Assistant")
+st.write("Your personal exam preparation assistant!")
+
+notes = st.text_area(
+    "Paste your study notes here:",
+    height=200
+)
+
+if st.button("Generate Study Materials"):
+
+    if notes.strip():
+
+        words = notes.split()
+
+        st.subheader("📝 Quick Notes")
+
+        sentences = notes.replace("!", ".").replace("?", ".").split(".")
+
+        for sentence in sentences:
+            if sentence.strip():
+                st.write("•", sentence.strip())
+
+        st.subheader("📊 Study Statistics")
+
+        st.write("Total words:", len(words))
+
+        st.write(
+            "Unique words:",
+            len(set(word.lower() for word in words))
+        )
+
+        st.subheader("🃏 Flashcard")
+
+        if len(words) >= 5:
+            question_words = words[:5]
+
+            st.write(
+                "Remember these important words:",
+                ", ".join(question_words)
+            )
+
+    else:
+        st.warning("Please enter your study notes first!")
